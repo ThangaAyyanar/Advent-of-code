@@ -1,0 +1,64 @@
+from dataclasses import dataclass
+
+# @dataclass
+# class PassportModel:
+    # byr:int     # (Birth Year)
+    # iyr:int     # (Issue Year)
+    # eyr:int     # (Expiration Year)
+    # hgt:str     # (Height)
+    # hcl:str     # (Hair Color)
+    # ecl:str     # (Eye Color)
+    # pid:str     # (Passport ID)
+    # cid:int     # (Country ID)
+
+class PassportModel:
+    pass
+
+def parse_block(block):
+    # print(block)
+    block_split = block.split()
+    model = PassportModel()
+    for param in block_split:
+        param_split = param.split(":")
+
+        if param_split[0] == "byr":
+            model.byr = int(param_split[1])
+        elif param_split[0] == "iyr":
+            model.iyr = int(param_split[1])
+        elif param_split[0] == "eyr":
+            model.eyr = int(param_split[1])
+        elif param_split[0] == "hgt":
+            model.hgt = param_split[1]
+        elif param_split[0] == "hcl":
+            model.hcl = param_split[1]
+        elif param_split[0] == "ecl":
+            model.ecl = param_split[1]
+        elif param_split[0] == "pid":
+            model.pid = param_split[1]
+        elif param_split[0] == "cid":
+            model.cid = int(param_split[1])
+
+    print(model.pid)
+
+def main():
+    with open("input.txt") as inputFile:
+
+        block = ""
+        index = 0
+        for line in inputFile:
+
+            if index == 3:
+                break
+
+            if line == "\n":
+                parse_block(block)
+                block = ""
+            elif block == "":
+                block = line.strip()
+            else:
+                block = f'{block} {line.strip()}'
+
+            index += 1
+
+if __name__ == "__main__":
+    main()
