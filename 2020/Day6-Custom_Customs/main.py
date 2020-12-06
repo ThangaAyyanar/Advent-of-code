@@ -25,7 +25,7 @@ def main():
     with open("input.txt") as inputFile:
         all_input = inputFile.read()
         group_sum = 0
-        seperate_groups = all_input.split("\n\n")
+        seperate_groups = all_input.split("\n\n") # Ensure last line has extra new line or last group is not taken into account
         for group in seperate_groups:
             # get_group_data(group)
             get_group_data_part2(group)
